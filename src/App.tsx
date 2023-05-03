@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { styled } from '@mui/material/styles'
+import Box, { BoxProps } from '@mui/material/Box'
+
+import Header from './components/header'
+import CreateNews from './components/createNews'
+
+const Main = styled(Box)<BoxProps>(() => ({
+  minHeight: '500px',
+  paddingtop: '10px',
+  borderTop: '1px solid #ccc',
+  color: '#000',
+  clear: 'both'
+}))
+
+
+const App = () => {
+  const { t, ready } = useTranslation()
+
+  if(!ready)
+    return null
+
+  return (<>
+    <Header />
+    <Main>
+      <CreateNews />
+    </Main>
+  </>)
 }
 
-export default App;
+export default App

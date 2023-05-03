@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+#root {
+  font-family: Arial,Helvetica,serif,Microsoft JhengHei,PMingLiU;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  width: 1280px;
+  margin: 10px auto 0;
+}

@@ -1,0 +1,17 @@
+{
+  "global": {
+    "txt-import": "匯入",
+    "txt-export": "匯出",
+
+    "type-image": "圖片",
+    "type-text": "文字"
+  },
+  "dialog": {
+    "title-create-content": "新增內文",
+    "btn-cancel": "取消",
+    "btn-confirm": "確認"
+  },
+  "hint": {
+    "text-create-content": "新增內文"
+  }
+}
