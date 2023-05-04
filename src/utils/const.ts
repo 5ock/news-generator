@@ -1,4 +1,4 @@
 export const contentTypes = [
-    { text: 'text', value: 'type-text' },
-    { text: 'image', value: 'type-iamge'}
+    { text: 'global.type-text', value: 'text' },
+    { text: 'global.type-image', value: 'img' }
 ]

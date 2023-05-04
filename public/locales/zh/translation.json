@@ -9,7 +9,17 @@
   "dialog": {
     "title-create-content": "新增內文",
     "btn-cancel": "取消",
-    "btn-confirm": "確認"
+    "btn-confirm": "確認",
+
+    "item-title": "標題",
+    "item-types": "內文類型",
+    "item-upload-image": "上傳檔案",
+    "item-image-alt": "圖片替代文字",
+    "item-image-width": "圖片寬度",
+    "item-image-height": "圖片高度",
+    "item-text": "內文",
+
+    "hint-please-type-number": "請輸入數字"
   },
   "hint": {
     "text-create-content": "新增內文"

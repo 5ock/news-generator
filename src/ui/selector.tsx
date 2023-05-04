@@ -3,6 +3,7 @@ import _ from 'lodash'
 import cx from 'classnames'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import { useTranslation } from 'react-i18next'
 
 /**
  * example
@@ -26,9 +27,12 @@ interface ISelectorTypes {
   onOpen?: () => void;
   styles?: {};
   selectClassName?: string;
+  autoTranslate?: boolean;
 }
 
-const Selector = ({options, onChange, value, firstItemText, styles, selectClassName, onOpen}: ISelectorTypes)=> {
+const Selector = (props: ISelectorTypes)=> {
+  const {options, onChange, value, firstItemText, styles, selectClassName, onOpen, autoTranslate=false} = props
+  const { t } = useTranslation()
   const handleSelectChange = (e: SelectChangeEvent<string>) => {
     onChange && onChange(e.target.value)
   }
@@ -46,7 +50,7 @@ const Selector = ({options, onChange, value, firstItemText, styles, selectClassN
       sx={sxObj}
     >
       { options && options.length > 0 && 
-        _.map(options, el => (<MenuItem value={el.value} key={el.value}>{el.text}</MenuItem>)
+        _.map(options, el => (<MenuItem value={el.value} key={el.value}>{autoTranslate ? t(el.text) : el.text}</MenuItem>)
       )}
     </Select>
   )
