@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import CardMedia from '@mui/material/CardMedia'
 
 // type
-import { IArticle, INewsItem, initialNews, initialArticle, IContent } from '../../types/news'
+import { IArticle, initialArticle, IContent } from '../../types/news'
 
 interface INewsPreviewProps {
     locales: 'zh'|'en'

@@ -152,7 +152,7 @@ const NewsDialog = (props:INewsDialogProps) => {
         _.set(newData, 'zh', zhArticle)
         _.set(newData, 'en', enArticle)
         setNewsData(newData)
-    }, [contentList])
+    }, [contentList, newsData])
 
     useEffect(() => {
         if(mode === 'create')
@@ -184,7 +184,7 @@ const NewsDialog = (props:INewsDialogProps) => {
                 setContentList(cl)
             }
         }
-    }, [aNews])
+    }, [aNews, mode])
 
     if(mode === 'edit' && aNews.uuid === -1)
         return null
