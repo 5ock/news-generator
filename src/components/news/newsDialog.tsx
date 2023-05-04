@@ -72,8 +72,6 @@ const NewsDialog = (props:INewsDialogProps) => {
             newData.uuid = moment().valueOf()
         dispatch(setANews(newData))
 
-        console.log(newData)
-
         handleCancel()
     }
 
@@ -154,6 +152,8 @@ const NewsDialog = (props:INewsDialogProps) => {
         _.set(newData, 'zh', zhArticle)
         _.set(newData, 'en', enArticle)
         setNewsData(newData)
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contentList])
 
     useEffect(() => {
