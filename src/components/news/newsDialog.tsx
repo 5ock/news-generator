@@ -176,8 +176,8 @@ const NewsDialog = (props:INewsDialogProps) => {
                         item.altEn = en.alt
                         item.altZh = zh.alt
                     } else {
-                        item.textZh = en.text
-                        item.textEn = zh.text
+                        item.textEn = en.text
+                        item.textZh = zh.text
                     }
                     cl.push(item)
                 }
