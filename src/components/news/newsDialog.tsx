@@ -16,7 +16,6 @@ import TextField from '@mui/material/TextField'
 import AddIcon from '@mui/icons-material/Add'
 
 import ModalDialog from '../../ui/modalDialog'
-import NoticeDialog from '../../ui/noticeDialog'
 
 // type
 import { IContent, IEditContent, initialContent, INewsItem, initialNews, IArticle, initialArticle } from '../../types/news'
@@ -66,8 +65,6 @@ const NewsDialog = (props:INewsDialogProps) => {
 
     const [ newsData, setNewsData ] = useState<INewsItem>(initialNews)
     const [ contentList, setContentList ] = useState<IEditContent[]>([])
-
-    const [ noticeMessage, setNoticeMessage ] = useState<string>('')
 
     const handleConfirm = () => {
         let newData = _.clone(newsData)
@@ -192,7 +189,7 @@ const NewsDialog = (props:INewsDialogProps) => {
     if(mode === 'edit' && aNews.uuid === -1)
         return null
 
-    return (<><ModalDialog
+    return (<ModalDialog
         sx={{
             '.MuiDialogContent-root': {
                 paddingTop: '0px'
@@ -256,14 +253,7 @@ const NewsDialog = (props:INewsDialogProps) => {
                 <AddIcon />
             </Button>
         </NewsBox>
-    </ModalDialog>
-    
-    {/* { noticeMessage && <NoticeDialog
-            noticeMessage={noticeMessage}
-            onConfirm={handleNew}
-            onCancel={() => setNoticeMessage('')}
-    />} */}
-    </>)
+    </ModalDialog>)
 }
 
 export default NewsDialog

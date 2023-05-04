@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import _ from 'lodash'
 
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'

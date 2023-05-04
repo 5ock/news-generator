@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
-import { useTranslation } from 'react-i18next'
 import { useTypedSelector } from '../../utils/customHook'
 
 import { styled } from '@mui/material/styles'
@@ -43,12 +42,10 @@ const CusBox = styled(Box)<BoxProps>(() => ({
 }))
 
 const NewsPreview = (props:INewsPreviewProps) => {
-    const { t } = useTranslation()
     const { aNews } = useTypedSelector(state => state.global)
 
     const { locales } = props
 
-    const [ newsItem, setNewsItem ] = useState<INewsItem>(initialNews)
     const [ article, setArticle ] = useState<IArticle>(initialArticle)
     const [ date, setDate ] = useState<string>('')
 

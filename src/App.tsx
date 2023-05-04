@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
 
@@ -18,7 +18,7 @@ const Main = styled(Box)<BoxProps>(() => ({
 
 
 const App = () => {
-  const { t, ready } = useTranslation()
+  const { ready } = useTranslation()
 
   if(!ready)
     return null
