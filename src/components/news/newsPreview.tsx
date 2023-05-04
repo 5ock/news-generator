@@ -32,12 +32,18 @@ const CusBox = styled(Box)<BoxProps>(() => ({
         width: '100%'
     },
     '.date': {
-        paddingBottom: '40px',
+        // paddingBottom: '40px',
         paddingLeft: '50px'
     },
     '.content': {
         marginBottom: '20px',
-        paddingLeft: '50px'
+        padding: '0 50px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',    
+        '.content-text, .content-image': {
+            marginBottom: '20px'
+        }
     }
 }))
 
@@ -94,7 +100,7 @@ const NewsPreview = (props:INewsPreviewProps) => {
                                     component='img'
                                     alt={el.alt}
                                     src={el.imgBase64}
-                                    sx={{width: '100%'}}
+                                    sx={{width: '400px'}}
                                 />
                             </Typography>)
                             : (<Typography

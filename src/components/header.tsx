@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useTypedSelector } from '../utils/customHook'
+import moment from 'moment'
 
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
@@ -27,7 +28,7 @@ const Header = () =>{
         
         const link = document.createElement("a")
         link.href = url
-        link.download = "news.json"
+        link.download = `news-${moment().format('YYYY-MM-DD')}.json`
         document.body.appendChild(link)
         link.click()
     }

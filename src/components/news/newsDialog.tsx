@@ -72,6 +72,8 @@ const NewsDialog = (props:INewsDialogProps) => {
             newData.uuid = moment().valueOf()
         dispatch(setANews(newData))
 
+        console.log(newData)
+
         handleCancel()
     }
 
@@ -152,7 +154,7 @@ const NewsDialog = (props:INewsDialogProps) => {
         _.set(newData, 'zh', zhArticle)
         _.set(newData, 'en', enArticle)
         setNewsData(newData)
-    }, [contentList, newsData])
+    }, [contentList])
 
     useEffect(() => {
         if(mode === 'create')
