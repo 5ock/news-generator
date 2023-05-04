@@ -4,24 +4,45 @@
     "txt-export": "匯出",
 
     "type-image": "圖片",
-    "type-text": "文字"
+    "type-text": "文字",
+    
+    "btn-create": "新增",
+    "btn-edit": "編輯",
+    "btn-preview": "預覽",
+    "btn-preview-en": "英文",
+    "btn-preview-zh": "中文"
   },
   "dialog": {
     "title-create-content": "新增內文",
+    "title-create-news": "新增最新消息",
+    "title-edit-news": "編輯最新消息",
+    "title-notice": "提示",
     "btn-cancel": "取消",
     "btn-confirm": "確認",
 
+    "itme-news-title-zh": "標題-中文",
+    "itme-news-title-en": "標題-英文",
+    "itme-publish-date": "發布日期",
+
     "item-title": "標題",
     "item-types": "內文類型",
-    "item-upload-image": "上傳檔案",
-    "item-image-alt": "圖片替代文字",
+    "item-upload-image": "上傳圖檔",
+    "item-image-alt-zh": "圖片替代文字(中文)",
+    "item-image-alt-en": "圖片替代文字(英文)",
     "item-image-width": "圖片寬度",
     "item-image-height": "圖片高度",
-    "item-text": "內文",
+    "item-text-zh": "內文-中文",
+    "item-text-en": "內文-英文",
 
-    "hint-please-type-number": "請輸入數字"
+    "hint-please-type-number": "請輸入數字",
+    "hint-select-file": "選擇檔案"
   },
   "hint": {
-    "text-create-content": "新增內文"
+    "text-create-content": "新增文章",
+    "text-edit-content": "編輯文章",
+    "text-create-will-clear-data": "\"新增\"會將當前所設定資料清空！"
+  },
+  "error": {
+    "txt-upload-image": "請上傳圖檔"
   }
 }

@@ -1,11 +1,25 @@
 export interface IContent {
     number: number;
     type: 'img' | 'text';
-    path?: string;
+    imgFileName?: string;
+    imgBase64?: string;
     alt?: string;
     width?: number;
     height?: number;
     text?: string;
+}
+
+export interface IEditContent {
+    number: number;
+    type: 'img' | 'text';
+    imgFileName?: string;
+    imgBase64?: string;
+    altZh?: string;
+    altEn?: string;
+    width?: number;
+    height?: number;
+    textZh?: string;
+    textEn?: string;
 }
 
 export const initialContent:IContent = {
@@ -15,7 +29,12 @@ export const initialContent:IContent = {
 
 export interface IArticle {
     title: string;
-    content: string | IContent[];
+    content: IContent[];
+}
+
+export const initialArticle:IArticle = {
+    title: '',
+    content: []
 }
 
 export interface INewsItem {

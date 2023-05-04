@@ -22,7 +22,6 @@ interface ISelectOption {
 interface ISelectorTypes {
   value?: string;
   options?: ISelectOption[];
-  firstItemText?: string;
   onChange?: (val: string) => void;
   onOpen?: () => void;
   styles?: {};
@@ -31,7 +30,7 @@ interface ISelectorTypes {
 }
 
 const Selector = (props: ISelectorTypes)=> {
-  const {options, onChange, value, firstItemText, styles, selectClassName, onOpen, autoTranslate=false} = props
+  const {options, onChange, value, styles, selectClassName, onOpen, autoTranslate=false} = props
   const { t } = useTranslation()
   const handleSelectChange = (e: SelectChangeEvent<string>) => {
     onChange && onChange(e.target.value)

@@ -1,86 +1,101 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
 import Button from '@mui/material/Button'
-import AddIcon from '@mui/icons-material/Add'
 
-import ContentDialog from './contentDialog'
+// import ContentEdit from './content/contentEdit'
+// import ContentPreview from './content/contentPreview'
+import NewsDialog from './news/newsDialog'
+import NewsPreview from './news/newsPreview'
+import NoticeDialog from '../ui/noticeDialog'
 
 // type
-import { IContent } from '../types/news'
+import { initialNews } from '../types/news'
+
+// redux
+import { setANews } from '../redux/global'
 
 const CusBox = styled(Box)<BoxProps>(() => ({
-    marginTop: '40px',
-    fontZize: '16px',
+    fontSize: '16px',
     width: '100%',
     paddingBottom: '10px',
-    '.wrap': {
-        width: '850px',
-        margin: '0 auto',
-        borderRight: '1px dotted #ccc',
-        borderLeft: '1px dotted #ccc',
-        borderBottom: '1px dotted #ccc',
-        '.title': {
-            display: 'inline-block',
-            padding: '18px 0',
-            backgroundColor: '#000',
-            color: '#fff',
-            fontWeight: '400',
-            fontSize: '30px',
-            textAlign: 'center',
-            marginBottom: '30px',
-            width: '100%'
-        },
-        '.btn-add': {
-            width: '200px',
-            borderWidth: '2px',
-            margin: '0 auto',
-            display: 'flex',
-            
-            '&:hover': {
-                borderWidth: '2px',
-            }
+    '.news-header': {
+        height: '40px',
+        textAlign: 'center',
+        '.btn': {
+            height: '30px',
+            margin: '5px 10px',
+            fontSize: '16px'
         }
     }
 }))
 
 const CreateNews = () => {
     const { t } = useTranslation()
-    const [ openContentDialog, setOpenContentDialog ] = useState<boolean>(false)
+    const dispatch = useDispatch()
 
-    const [ contents, setContents ] = useState<IContent[]>([])
+    const [ newsMode, setNewsMode ] = useState<string>('')
+    const [ noticeMessage, setNoticeMessage ] = useState<string>('')
+    const [ locales, setLocales ] = useState<'zh'|'en'>('zh')
 
+    const handleCreateBtnClick = () => {
+        setNewsMode('create')
+        // setNoticeMessage(t('hint.text-create-will-clear-data') as string)
+    }
+
+    const handleNew = () => {
+        dispatch(setANews(initialNews))
+        setNoticeMessage('')
+        setNewsMode('edit')
+    }
+
+    const handlePreview = () => {
+        if(newsMode !== 'preview')
+            setNewsMode('preview')
+
+        setLocales(locales === 'zh' ? 'en' : 'zh')
+    }
 
     return (<>
         <CusBox>
-            <Typography component={'div'} className='wrap'>
-                <Typography component={'div'} className='title'>
-                    title
-                </Typography>
-                <Typography component={'div'} className='date'>
-                    date
-                </Typography>
-                <Typography component={'div'} className='content'>
-                    content
-                </Typography>
+            <Typography component={'div'} className='news-header'>
                 <Button
                     title={t('hint.text-create-content') as string}
                     variant="outlined"
-                    className='btn-add'
-                    onClick={() => setOpenContentDialog(true)} >
-                    <AddIcon />
+                    className='btn'
+                    onClick={handleCreateBtnClick} >
+                    {t('global.btn-create')}
+                </Button>
+                <Button
+                    title={t('hint.text-edit-content') as string}
+                    variant="outlined"
+                    className='btn'
+                    onClick={() => setNewsMode('edit')} >
+                    {t('global.btn-edit')}
+                </Button>
+                <Button
+                    title={t('hint.text-edit-content') as string}
+                    variant="outlined"
+                    className='btn'
+                    onClick={handlePreview} >
+                    {locales === 'en' ? t('global.btn-preview-zh') : t('global.btn-preview-en')}
                 </Button>
             </Typography>
+            <NewsPreview locales={locales} />
+            { (newsMode === 'edit' || newsMode === 'create') && <NewsDialog
+                mode={newsMode}
+                onCancel={() => setNewsMode('preview')} />}
         </CusBox>
-        <ContentDialog
-            open={openContentDialog}
-            onCancel={() => setOpenContentDialog(false)}
-            onConfirm={() => {}}
-        />
+        { noticeMessage && <NoticeDialog
+            noticeMessage={noticeMessage}
+            onConfirm={handleNew}
+            onCancel={() => setNoticeMessage('')}
+        />}
     </>)
 }
 

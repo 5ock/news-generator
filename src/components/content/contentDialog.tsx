@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 
@@ -7,17 +7,19 @@ import Box, { BoxProps } from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Input from '@mui/material/Input'
 import TextField from '@mui/material/TextField'
+import Alert from '@mui/material/Alert'
+import Stack from '@mui/material/Stack'
+import IconButton from '@mui/material/IconButton'
+import ReplayIcon from '@mui/icons-material/Replay'
 
-import ModalDialog from '../ui/modalDialog'
-import CusInput from '../ui/input'
-import Selector from '../ui/selector'
+import ModalDialog from '../../ui/modalDialog'
+import Selector from '../../ui/selector'
 
-import { contentTypes } from '../utils/const'
+import { contentTypes } from '../../utils/const'
 
 // type
-import { IContent, initialContent } from '../types/news'
+import { IContent, initialContent } from '../../types/news'
 
 const ContentBox = styled(Box)<BoxProps>(() => ({
     '.item': {
@@ -52,10 +54,39 @@ const ContentDialog = (props:IContentDialogProps) => {
 
     const [ contentData, setContentData ] = useState<IContent>(initialContent)
 
+    // input error
+    const [ errorMessageImage, setErrorMessageImage ] = useState<string>('')
+
+    const fileInputRef = useRef<HTMLInputElement>(null)
+
     const handleChange = (itemPath:string, val:any) => {
         let newData = _.clone(contentData)
         _.set(newData, itemPath, val)
         setContentData(newData)
+    }
+
+    const handleImage = (target:any) => {
+        if(!target.files || target.files.length === 0 || !fileInputRef.current)
+            return
+
+        const file = target.files[0]
+        if(file.type.indexOf('image') < 0) {
+            fileInputRef.current.value = ''
+            handleChange('path', '')
+            handleChange('imgUrl', '')
+            return setErrorMessageImage(t('error.txt-upload-image') as string)
+        }
+
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+            const imageBase64 = reader.result
+            let newData = _.clone(contentData)
+            
+            _.set(newData, 'imgFileName', file.name)
+            _.set(newData, 'imgBase64', imageBase64)
+            setContentData(newData)
+        }
     }
 
     const handleConfirm = () => {
@@ -63,7 +94,8 @@ const ContentDialog = (props:IContentDialogProps) => {
     }
 
     const handleCancel = () => {
-
+        setErrorMessageImage('')
+        setContentData(initialContent)
         onCancel && onCancel()
     }
 
@@ -98,13 +130,38 @@ const ContentDialog = (props:IContentDialogProps) => {
                 ? (<>
                     <Typography component='div' className='item'>
                         <Typography className='label'>{t('dialog.item-upload-image')}</Typography>
-                        <Input
+                        <IconButton
+                          color="primary"
+                          aria-label="upload picture"
+                          component="label"
+                          className='icon-button'
+                        >
+                          <input
+                            ref={fileInputRef}
+                            hidden
+                            accept='image/*'
                             type='file'
-                            sx={{
-                                position: 'unset'
-                            }}
-                        />
+                            onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleImage(e.target)}
+                          />
+                            <Typography>{contentData.imgFileName ? contentData.imgFileName : t('dialog.hint-select-file')}</Typography>
+                            { contentData.imgFileName && <ReplayIcon sx={{marginLeft: '20px'}} /> }
+                        </IconButton>
                     </Typography>
+                        { errorMessageImage && <Stack sx={{
+                                width: '150px',
+                                margin: '0 auto',
+                                'div': {
+                                    padding: '2px 5px'
+                                },
+                                '.MuiAlert-icon': {
+                                    paddingLeft: '5px',
+                                },
+                                '.MuiAlert-message': {
+                                    paddingRight: '5px'
+                                }
+                            }} spacing={2}>
+                            <Alert severity="error" className='alert'>{errorMessageImage}</Alert>
+                        </Stack> }
                     <Typography component='div' className='item'>
                         <Typography className='label'>{t('dialog.item-image-alt')}</Typography>
                         <TextField
