@@ -1,0 +1,70 @@
+[
+{
+    "uuid": 2,
+    "date": "20230502",
+    "en": {
+        "title": "testing a new json file",
+        "content": [
+            {
+                "number": 1,
+                "type": "img",
+                "path": "",
+                "alt": "",
+                "width": "",
+                "height": ""
+            },
+            {
+                "number": 2,
+                "type": "text",
+                "text": "this is a apple."
+            }
+        ]
+    },
+    "zh": {
+        "title": "測試新json檔案",
+        "content": [
+            {
+                "number": 1,
+                "type": "img",
+                "path": "",
+                "alt": "",
+                "width": "",
+                "height": ""
+            },
+            {
+                "number": 2,
+                "type": "text",
+                "text": "this is a apple."
+            }
+        ]
+    },
+    "isNew": true
+},
+{
+    "uuid": 2,
+    "date": "20221115",
+    "en": {
+        "title": "Coronavirus disease(COVID-19) Notice",
+        "content": "Please cooperate with wearing a mask and disinfecting your hand before entering the factory."
+    },
+    "zh": {
+        "title": "因應新冠狀肺炎(COVID-19)注意事項",
+        "content": "因應新冠狀肺炎(COVID-19)，廠商、客戶以及訪客來訪請配戴口罩，雙手請先使用酒精消毒再進入廠區。謝謝合作!!"
+
+    },
+    "isNew": true
+},
+{
+    "uuid": 3,
+    "date": "20220105",
+    "en": {
+        "title": "WEB Update",
+        "content": "2022.1.5 imporve..."
+    },
+    "zh": {
+        "title": "網頁改版中e",
+        "content": "2022年1月5日起網頁進行改版"
+
+    },
+    "isNew": true
+}]
