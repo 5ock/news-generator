@@ -6,12 +6,14 @@ interface IGlobalState {
     mode: string; // aNews, allNews
     aNews: INewsItem;
     aContent: IContent;
+    importFiles: INewsItem[];
 }
 
 const globalInitial:IGlobalState = {
     mode: '',
     aNews: initialNews,
-    aContent: initialContent
+    aContent: initialContent,
+    importFiles: []
 }
 
 const globalSlice = createSlice({
@@ -27,6 +29,9 @@ const globalSlice = createSlice({
         setAContent(state, action) {
             state.aContent = action.payload
         },
+        setImportFiles(state, action) {
+            state.importFiles = action.payload
+        },
         reset: () => globalInitial
     }
 })
@@ -36,6 +41,7 @@ export const {
     setMode,
     setANews,
     setAContent,
+    setImportFiles,
     reset
 } = globalSlice.actions
 
