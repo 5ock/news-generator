@@ -84,8 +84,6 @@ const NewsDialog = (props:INewsDialogProps) => {
     const handleChange = (path:string, val:any) => {
         const newData = _.clone(newsData)
         if(path === 'date')
-            console.log(moment(val).format('YYYYMMDD'))
-        if(path === 'date')
             _.set(newData, path, moment(val).format('YYYYMMDD'))
         else 
             _.set(newData, path, val)
