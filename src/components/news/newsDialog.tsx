@@ -84,7 +84,9 @@ const NewsDialog = (props:INewsDialogProps) => {
     const handleChange = (path:string, val:any) => {
         const newData = _.clone(newsData)
         if(path === 'date')
-            _.set(newData, path, moment(val).format('YYYY-MM-DD'))
+            console.log(moment(val).format('YYYYMMDD'))
+        if(path === 'date')
+            _.set(newData, path, moment(val).format('YYYYMMDD'))
         else 
             _.set(newData, path, val)
         setNewsData(newData)
@@ -225,7 +227,7 @@ const NewsDialog = (props:INewsDialogProps) => {
             <Typography component='div' className='item'>
                 <Typography className='label'>{t('dialog.itme-publish-date')}</Typography>
                 <Flatpickr
-                    value={newsData.date}
+                    value={newsData.date ? moment(newsData.date).format('YYYY-MM-DD') : ''}
                     onChange={(date:Date[]) => handleChange('date', date[0])}
                     options={{
                         dateFormat: 'Y-m-d',
